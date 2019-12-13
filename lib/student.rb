@@ -61,4 +61,14 @@ class Student
     self.new(array[0], array[1], array[2])
   end
 
+  def self.find_by_name(name)
+    sql = <<-SQL
+      SELECT * from students 
+      WHERE name = ?
+      LIMIT 1
+    SQL
+
+    DB[:conn].execute(sql, name)
+  end
+
 end
